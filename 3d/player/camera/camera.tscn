@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3qnirpixvv1k"]
+
+[ext_resource type="Script" path="res://3d/player/camera/camera.gd" id="1_iv58y"]
+
+[node name="camera" type="Node3D"]
+script = ExtResource("1_iv58y")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+rotation_edit_mode = 2

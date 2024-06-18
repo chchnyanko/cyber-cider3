@@ -1,0 +1,133 @@
+[gd_scene load_steps=11 format=3 uid="uid://uoxjiag2bmf3"]
+
+[ext_resource type="Script" path="res://minigames/cube/cube.gd" id="1_m8ksb"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vhntr"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_nwuno"]
+sky_material = SubResource("ProceduralSkyMaterial_vhntr")
+
+[sub_resource type="Environment" id="Environment_w8f1u"]
+background_mode = 2
+sky = SubResource("Sky_nwuno")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_egh63"]
+viewport_path = NodePath("faces/game1")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_n2cjh"]
+viewport_path = NodePath("faces/game2")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_t0n0i"]
+viewport_path = NodePath("faces/game3")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_e2oe6"]
+viewport_path = NodePath("faces/game4")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ovxha"]
+viewport_path = NodePath("faces/game5")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0qsvd"]
+viewport_path = NodePath("faces/game6")
+
+[node name="cube" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w8f1u")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="faces" type="Node3D" parent="."]
+script = ExtResource("1_m8ksb")
+
+[node name="side1" type="Sprite3D" parent="faces"]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 2.08165e-12, 2.08165e-12, 2.56)
+texture = SubResource("ViewportTexture_egh63")
+
+[node name="side2" type="Sprite3D" parent="faces"]
+transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, 2.56, 2.08165e-12, 2.08165e-12)
+texture = SubResource("ViewportTexture_n2cjh")
+
+[node name="side3" type="Sprite3D" parent="faces"]
+transform = Transform3D(-1, 3.48787e-16, -8.74228e-08, 3.48787e-16, 1, -3.48787e-16, 8.74228e-08, -3.48787e-16, -1, 2.08165e-12, 2.08165e-12, -2.56)
+texture = SubResource("ViewportTexture_t0n0i")
+
+[node name="side4" type="Sprite3D" parent="faces"]
+transform = Transform3D(-4.37114e-08, -3.48787e-16, -1, 3.48787e-16, 1, -3.48787e-16, 1, -3.48787e-16, -4.37114e-08, -2.56, 2.08165e-12, 2.08165e-12)
+texture = SubResource("ViewportTexture_e2oe6")
+
+[node name="side5" type="Sprite3D" parent="faces"]
+transform = Transform3D(1, -6.97574e-16, -1.5246e-23, -1.5246e-23, -4.37114e-08, 1, -6.97574e-16, -1, -4.37114e-08, 2.08165e-12, 2.56, 2.08165e-12)
+texture = SubResource("ViewportTexture_ovxha")
+
+[node name="side6" type="Sprite3D" parent="faces"]
+transform = Transform3D(1, 0, -1.5246e-23, -1.5246e-23, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2.08165e-12, -2.56, 2.08165e-12)
+texture = SubResource("ViewportTexture_0qsvd")
+
+[node name="game1" type="SubViewport" parent="faces"]
+
+[node name="Label" type="Label" parent="faces/game1"]
+offset_left = 256.0
+offset_top = 256.0
+offset_right = 296.0
+offset_bottom = 279.0
+theme_override_font_sizes/font_size = 100
+text = "1"
+
+[node name="game2" type="SubViewport" parent="faces"]
+
+[node name="Label" type="Label" parent="faces/game2"]
+offset_left = 256.0
+offset_top = 256.0
+offset_right = 296.0
+offset_bottom = 279.0
+theme_override_font_sizes/font_size = 100
+text = "2"
+
+[node name="game3" type="SubViewport" parent="faces"]
+
+[node name="Label" type="Label" parent="faces/game3"]
+offset_left = 256.0
+offset_top = 256.0
+offset_right = 296.0
+offset_bottom = 279.0
+theme_override_font_sizes/font_size = 100
+text = "3"
+
+[node name="game4" type="SubViewport" parent="faces"]
+
+[node name="Label" type="Label" parent="faces/game4"]
+offset_left = 256.0
+offset_top = 256.0
+offset_right = 296.0
+offset_bottom = 279.0
+theme_override_font_sizes/font_size = 100
+text = "4"
+
+[node name="game5" type="SubViewport" parent="faces"]
+
+[node name="Label" type="Label" parent="faces/game5"]
+offset_left = 256.0
+offset_top = 256.0
+offset_right = 296.0
+offset_bottom = 279.0
+theme_override_font_sizes/font_size = 100
+text = "5"
+
+[node name="game6" type="SubViewport" parent="faces"]
+
+[node name="Label" type="Label" parent="faces/game6"]
+offset_left = 256.0
+offset_top = 256.0
+offset_right = 296.0
+offset_bottom = 279.0
+theme_override_font_sizes/font_size = 100
+text = "6"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.0604)

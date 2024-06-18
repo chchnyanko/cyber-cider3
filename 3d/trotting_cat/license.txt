@@ -1,0 +1,8 @@
+Model Information:
+* title:	Trotting Cat
+* source:	https://sketchfab.com/3d-models/trotting-cat-6f1590955c9a4657bed93e932f9acc8a
+* author:	miyapCG / Character model maker (https://sketchfab.com/miyapCG)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

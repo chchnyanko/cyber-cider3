@@ -1,0 +1,138 @@
+[gd_scene load_steps=15 format=3 uid="uid://twsequ8kvxuv"]
+
+[ext_resource type="Script" path="res://3d/player/player.gd" id="1_8fy43"]
+[ext_resource type="Script" path="res://3d/player/statemachine/statemachine.gd" id="2_ob882"]
+[ext_resource type="SpriteFrames" uid="uid://c4g3utpl47nf1" path="res://3d/player/sprites/animation.tres" id="2_pg84s"]
+[ext_resource type="Script" path="res://3d/player/statemachine/idle.gd" id="3_ywrwg"]
+[ext_resource type="Script" path="res://3d/player/statemachine/walk.gd" id="4_61jdi"]
+[ext_resource type="Script" path="res://3d/player/statemachine/jump.gd" id="5_ebvej"]
+[ext_resource type="Script" path="res://3d/player/statemachine/fall.gd" id="6_48asj"]
+[ext_resource type="Script" path="res://3d/player/statemachine/climb.gd" id="7_upnuh"]
+[ext_resource type="Script" path="res://3d/player/statemachine/climb_idle.gd" id="8_e4abn"]
+[ext_resource type="Script" path="res://3d/player/statemachine/climb_jump.gd" id="9_5pfb1"]
+[ext_resource type="Script" path="res://3d/player/statemachine/crawl.gd" id="10_r4wot"]
+[ext_resource type="Texture2D" uid="uid://bsl38iifwba3h" path="res://3d/player/sprites/shadow.png" id="12_00qq7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h452v"]
+size = Vector3(0.6, 1.2, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dsgwl"]
+size = Vector3(0.6, 1.1, 0.2)
+
+[node name="player" type="CharacterBody3D"]
+rotation_edit_mode = 2
+script = ExtResource("1_8fy43")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.2, 2.08165e-12)
+sprite_frames = ExtResource("2_pg84s")
+animation = &"dash"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, -4.25983e-09, 0, 1, 0, 4.25983e-09, 0, 1, 2.08165e-12, 0.204194, 2.08165e-12)
+shape = SubResource("BoxShape3D_h452v")
+
+[node name="ceiling_checker" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.6, 2.08165e-12)
+shape = SubResource("BoxShape3D_dsgwl")
+target_position = Vector3(2.08165e-12, 1, 2.08165e-12)
+
+[node name="statemachine" type="Node" parent="."]
+script = ExtResource("2_ob882")
+
+[node name="idle" type="Node" parent="statemachine"]
+script = ExtResource("3_ywrwg")
+
+[node name="walk" type="Node" parent="statemachine"]
+script = ExtResource("4_61jdi")
+
+[node name="jump" type="Node" parent="statemachine"]
+script = ExtResource("5_ebvej")
+
+[node name="fall" type="Node" parent="statemachine"]
+script = ExtResource("6_48asj")
+
+[node name="climb" type="Node" parent="statemachine"]
+script = ExtResource("7_upnuh")
+
+[node name="climb_idle" type="Node" parent="statemachine"]
+script = ExtResource("8_e4abn")
+
+[node name="climb_jump" type="Node" parent="statemachine"]
+script = ExtResource("9_5pfb1")
+
+[node name="Timer" type="Timer" parent="statemachine/climb_jump"]
+one_shot = true
+
+[node name="crawl" type="Node" parent="statemachine"]
+script = ExtResource("10_r4wot")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 205.0
+offset_bottom = 239.0
+
+[node name="velocity" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Current velocity: "
+
+[node name="state" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Current state: "
+
+[node name="animation" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Current animation: "
+
+[node name="camera_state" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Current Camera State: "
+
+[node name="camera_position" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Current Position: "
+
+[node name="ceiling_checker_collision" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Ceiling Checker Collisions: "
+
+[node name="wall_normal" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Wall Normal: "
+
+[node name="climb_timer" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Climb Timer Time Left: "
+
+[node name="last_climb_pos" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Last Climb Position: "
+
+[node name="shadow_ray" type="RayCast3D" parent="."]
+target_position = Vector3(2.08165e-12, -50, 2.08165e-12)
+
+[node name="shadow" type="Decal" parent="."]
+size = Vector3(1, 0.001, 1)
+texture_albedo = ExtResource("12_00qq7")
+modulate = Color(1, 1, 1, 0.588235)
+
+[connection signal="timeout" from="statemachine/climb_jump/Timer" to="statemachine/climb_jump" method="_on_timer_timeout"]

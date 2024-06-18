@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=3 uid="uid://duthxxslyuch3"]
+
+[ext_resource type="FontFile" uid="uid://d2ijad3n3mv" path="res://ui/Splatoon2.otf" id="1_345bq"]
+[ext_resource type="Script" path="res://ui/title.gd" id="1_c8x6v"]
+[ext_resource type="Texture2D" uid="uid://bge4hcekirmks" path="res://icon.svg" id="3_0fqj2"]
+
+[sub_resource type="Curve" id="Curve_hvlda"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="title" type="Node2D"]
+script = ExtResource("1_c8x6v")
+
+[node name="title_replace_this_with_logo" type="Label" parent="."]
+offset_left = 74.0
+offset_top = 209.0
+offset_right = 670.0
+offset_bottom = 409.0
+theme_override_fonts/font = ExtResource("1_345bq")
+theme_override_font_sizes/font_size = 100
+text = "Cyber Cider³"
+
+[node name="Start_game" type="Button" parent="."]
+custom_minimum_size = Vector2(300, 100)
+offset_left = 750.0
+offset_top = 100.0
+offset_right = 1050.0
+offset_bottom = 200.0
+pivot_offset = Vector2(150, 50)
+focus_neighbor_left = NodePath("../Settings")
+focus_neighbor_top = NodePath("../Settings")
+focus_neighbor_right = NodePath("../Minigames")
+focus_neighbor_bottom = NodePath("../Minigames")
+focus_next = NodePath("../Minigames")
+focus_previous = NodePath("../Settings")
+theme_override_fonts/font = ExtResource("1_345bq")
+theme_override_font_sizes/font_size = 30
+text = "Start Game"
+flat = true
+
+[node name="Minigames" type="Button" parent="."]
+custom_minimum_size = Vector2(300, 100)
+offset_left = 750.0
+offset_top = 230.0
+offset_right = 1050.0
+offset_bottom = 330.0
+pivot_offset = Vector2(150, 50)
+focus_neighbor_left = NodePath("../Start_game")
+focus_neighbor_top = NodePath("../Start_game")
+focus_neighbor_right = NodePath("../Settings")
+focus_neighbor_bottom = NodePath("../Settings")
+focus_next = NodePath("../Settings")
+focus_previous = NodePath("../Start_game")
+theme_override_fonts/font = ExtResource("1_345bq")
+theme_override_font_sizes/font_size = 30
+text = "Play Minigames"
+flat = true
+
+[node name="Settings" type="Button" parent="."]
+custom_minimum_size = Vector2(300, 100)
+offset_left = 750.0
+offset_top = 360.0
+offset_right = 1050.0
+offset_bottom = 460.0
+pivot_offset = Vector2(150, 50)
+focus_neighbor_left = NodePath("../Minigames")
+focus_neighbor_top = NodePath("../Minigames")
+focus_neighbor_right = NodePath("../Start_game")
+focus_neighbor_bottom = NodePath("../Start_game")
+focus_next = NodePath("../Start_game")
+focus_previous = NodePath("../Minigames")
+theme_override_fonts/font = ExtResource("1_345bq")
+theme_override_font_sizes/font_size = 30
+text = "Settings"
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(714, 145)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_0fqj2")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 2.08165e-12, 2.08165e-12)
+width_curve = SubResource("Curve_hvlda")
+
+[connection signal="mouse_entered" from="Start_game" to="." method="_on_start_game_mouse_entered"]
+[connection signal="pressed" from="Start_game" to="." method="_on_start_game_pressed"]
+[connection signal="mouse_entered" from="Minigames" to="." method="_on_minigames_mouse_entered"]
+[connection signal="pressed" from="Minigames" to="." method="_on_minigames_pressed"]
+[connection signal="mouse_entered" from="Settings" to="." method="_on_settings_mouse_entered"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
