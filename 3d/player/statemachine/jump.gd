@@ -1,6 +1,6 @@
 extends "res://3d/player/statemachine/state.gd"
 
-var jump_speed : float = 100
+var jump_speed : float = 50
 
 func enter_state():
 	player.play_animation("jump")

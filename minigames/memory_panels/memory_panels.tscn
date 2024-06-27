@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://m06ssgy41flf"]
+
+[ext_resource type="Script" path="res://minigames/memory_panels/memory_panels.gd" id="1_2m0gm"]
+
+[node name="memory_panels" type="Node2D"]
+script = ExtResource("1_2m0gm")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 200
+text = "5"
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(512, 512)
+offset_right = 512.0
+offset_bottom = 512.0
+mouse_filter = 2

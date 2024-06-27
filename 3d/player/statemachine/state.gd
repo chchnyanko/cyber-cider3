@@ -2,7 +2,7 @@ extends Node
 
 class_name state
 
-const gravity : float = -10
+const gravity : float = -5
 const terminal_velocity : float = -40
 const climb_speed : Vector2 = Vector2(10, 10)
 

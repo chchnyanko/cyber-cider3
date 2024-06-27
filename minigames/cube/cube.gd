@@ -1,39 +1,43 @@
 extends Node3D
 
+@export var set_faces : Array[PackedScene]
+
 var face_angles : Array[Vector3]
 
 var current_face : int = 0
 
+var faces : Array[Node2D]
+
 func _ready():
+	var num = 0
 	for face in get_children():
-		if face is Sprite3D:
+		if face is MeshInstance3D:
 			face_angles.append(-face.rotation)
+		if face is SubViewport:
+			var scene = set_faces[num].instantiate()
+			face.add_child(scene)
+			faces.append(scene)
+			num += 1
 
 func _process(delta):
-	if Input.is_action_just_pressed("jump"):
-		current_face = randi_range(0,5)
-		print(current_face + 1)
 	if Input.is_key_pressed(KEY_1):
-		current_face = 0
-		print("1")
+		change_game(0)
 	if Input.is_key_pressed(KEY_2):
-		current_face = 1
-		print("2")
+		change_game(1)
 	if Input.is_key_pressed(KEY_3):
-		current_face = 2
-		print("3")
+		change_game(2)
 	if Input.is_key_pressed(KEY_4):
-		current_face = 3
-		print("4")
+		change_game(3)
 	if Input.is_key_pressed(KEY_5):
-		current_face = 4
-		print("5")
+		change_game(4)
 	if Input.is_key_pressed(KEY_6):
-		current_face = 5
-		print("6")
+		change_game(5)
 	rotation.x = lerp_angle(rotation.x, face_angles[current_face].x, 0.1)
 	rotation.y = lerp_angle(rotation.y, face_angles[current_face].y, 0.1)
 	rotation.z = lerp_angle(rotation.z, face_angles[current_face].z, 0.1)
-	#if abs(rotation - face_angles[current_face]) < Vector3(0.01, 0.01, 0.01):
-		#current_face = randi_range(0,5)
-		#print(current_face + 1)
+
+func change_game(next_game : int):
+	faces[current_face].current = false
+	faces[next_game].current = true
+	current_face = next_game
+	#print(next_game + 1)

@@ -18,3 +18,4 @@ func enter_state():
 
 func exit_state():
 	collision.shape.size.y = 1.3
+	player.transform.origin.y += 0.3

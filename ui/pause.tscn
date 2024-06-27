@@ -1,0 +1,219 @@
+[gd_scene load_steps=9 format=3 uid="uid://cj25o88urgm2f"]
+
+[ext_resource type="Theme" uid="uid://cbeib5ysf2qfu" path="res://ui/labels_and_buttons.tres" id="1_fw5yp"]
+[ext_resource type="Script" path="res://ui/pause.gd" id="1_s1npe"]
+[ext_resource type="Texture2D" uid="uid://bge4hcekirmks" path="res://icon.svg" id="2_4vrgl"]
+[ext_resource type="Script" path="res://ui/ui_cursor.gd" id="2_ih1r4"]
+
+[sub_resource type="Curve" id="Curve_x17cb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_cm0oa"]
+resource_name = "pause"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pause:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1000, 2.08165e-12), Vector2(500, 2.08165e-12), Vector2(2.08165e-12, 2.08165e-12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pause:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pause:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_mppud"]
+resource_name = "unpause"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pause:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2.08165e-12, 2.08165e-12), Vector2(2.08165e-12, 100), Vector2(2.08165e-12, 400), Vector2(2.08165e-12, 600)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("pause:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.349066]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pause:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0ri6a"]
+_data = {
+"pause": SubResource("Animation_cm0oa"),
+"unpause": SubResource("Animation_mppud")
+}
+
+[node name="pause_screen" type="Node2D" groups=["pause"]]
+process_mode = 3
+
+[node name="pause" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(600, 350)
+mouse_filter = 2
+script = ExtResource("1_s1npe")
+
+[node name="paused" type="Label" parent="pause"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 159.0
+offset_top = 244.0
+offset_right = 436.0
+offset_bottom = 344.0
+grow_vertical = 2
+theme = ExtResource("1_fw5yp")
+theme_override_font_sizes/font_size = 50
+text = "Game Paused"
+
+[node name="unpause" type="Button" parent="pause"]
+editor_description = "-pause-"
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+offset_left = 750.0
+offset_top = 100.0
+offset_right = 1050.0
+offset_bottom = 169.0
+focus_neighbor_left = NodePath("../title_screen")
+focus_neighbor_top = NodePath("../title_screen")
+focus_neighbor_right = NodePath("../options")
+focus_neighbor_bottom = NodePath("../options")
+focus_next = NodePath("../options")
+focus_previous = NodePath("../title_screen")
+theme = ExtResource("1_fw5yp")
+text = "Unpause"
+flat = true
+
+[node name="options" type="Button" parent="pause"]
+editor_description = "ui/settings-scene-"
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 750.0
+offset_top = 230.0
+offset_right = 1050.0
+offset_bottom = 299.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_neighbor_left = NodePath("../unpause")
+focus_neighbor_top = NodePath("../unpause")
+focus_neighbor_right = NodePath("../title_screen")
+focus_neighbor_bottom = NodePath("../title_screen")
+focus_next = NodePath("../title_screen")
+focus_previous = NodePath("../unpause")
+theme = ExtResource("1_fw5yp")
+text = "Options"
+flat = true
+
+[node name="title_screen" type="Button" parent="pause"]
+editor_description = "ui/title-scene-"
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 750.0
+offset_top = 360.0
+offset_right = 1050.0
+offset_bottom = 429.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_neighbor_left = NodePath("../options")
+focus_neighbor_top = NodePath("../options")
+focus_neighbor_right = NodePath("../unpause")
+focus_neighbor_bottom = NodePath("../unpause")
+focus_next = NodePath("../unpause")
+focus_previous = NodePath("../options")
+theme = ExtResource("1_fw5yp")
+text = "Back to Title Screen"
+flat = true
+
+[node name="cursor" type="Sprite2D" parent="pause"]
+visible = false
+position = Vector2(714, 145)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_4vrgl")
+
+[node name="line" type="Line2D" parent="pause"]
+points = PackedVector2Array(0, 0, 2.08165e-12, 2.08165e-12)
+width_curve = SubResource("Curve_x17cb")
+
+[node name="ui_cursor" type="Node" parent="pause" node_paths=PackedStringArray("cursor", "line", "first_focus", "pause_screen")]
+script = ExtResource("2_ih1r4")
+cursor = NodePath("../cursor")
+line = NodePath("../line")
+first_focus = NodePath("../unpause")
+pause_screen = NodePath("..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0ri6a")
+}
+
+[connection signal="mouse_entered" from="pause/unpause" to="pause" method="_on_unpause_mouse_entered"]
+[connection signal="mouse_entered" from="pause/options" to="pause" method="_on_options_mouse_entered"]
+[connection signal="mouse_entered" from="pause/title_screen" to="pause" method="_on_title_screen_mouse_entered"]

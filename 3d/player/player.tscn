@@ -25,6 +25,7 @@ script = ExtResource("1_8fy43")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.2, 2.08165e-12)
+billboard = 1
 sprite_frames = ExtResource("2_pg84s")
 animation = &"dash"
 
@@ -70,8 +71,9 @@ script = ExtResource("10_r4wot")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-offset_right = 205.0
-offset_bottom = 239.0
+offset_top = 54.0
+offset_right = 381.0
+offset_bottom = 464.0
 
 [node name="velocity" type="Label" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
@@ -127,6 +129,13 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "Last Climb Position: "
 
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer"]
+offset_right = 44.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 30
+button_pressed = true
+text = "show debug"
+
 [node name="shadow_ray" type="RayCast3D" parent="."]
 target_position = Vector3(2.08165e-12, -50, 2.08165e-12)
 
@@ -136,3 +145,4 @@ texture_albedo = ExtResource("12_00qq7")
 modulate = Color(1, 1, 1, 0.588235)
 
 [connection signal="timeout" from="statemachine/climb_jump/Timer" to="statemachine/climb_jump" method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/CheckButton" to="." method="_on_check_button_pressed"]

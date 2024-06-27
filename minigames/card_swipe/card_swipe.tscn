@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv1gm3f7hq4b4"]
+
+[ext_resource type="Script" path="res://minigames/card_swipe/card_swipe.gd" id="1_7oefq"]
+
+[node name="card_swipe" type="Node2D"]
+script = ExtResource("1_7oefq")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(512, 512)
+offset_right = 512.0
+offset_bottom = 512.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 200
+text = "2"

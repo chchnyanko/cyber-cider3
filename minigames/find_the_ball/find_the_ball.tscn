@@ -1,0 +1,106 @@
+[gd_scene load_steps=10 format=3 uid="uid://l67j7hwejx0g"]
+
+[ext_resource type="Script" path="res://minigames/find_the_ball/find_the_ball.gd" id="1_tp3dq"]
+[ext_resource type="Texture2D" uid="uid://duvy7tpaywnmn" path="res://minigames/find_the_ball/assets/tablet.png" id="2_5ddut"]
+[ext_resource type="Texture2D" uid="uid://bsl38iifwba3h" path="res://3d/player/sprites/shadow.png" id="3_88gng"]
+[ext_resource type="Texture2D" uid="uid://2mv60kr6o8vq" path="res://minigames/find_the_ball/assets/cupetha.png" id="3_a5kxm"]
+[ext_resource type="Texture2D" uid="uid://ck0uo1tla0ykg" path="res://minigames/find_the_ball/assets/someone's balls from iceland (it is very cold).png" id="5_u81im"]
+[ext_resource type="Texture2D" uid="uid://dnruskxq76yei" path="res://minigames/find_the_ball/assets/me knowing i sharted but nobody can pinpoint it was me.png" id="6_l00i3"]
+[ext_resource type="Texture2D" uid="uid://djr5v13qw00ml" path="res://minigames/find_the_ball/assets/me wen i forgot abt the lit kids in my basement and they got out.png" id="7_qauvl"]
+[ext_resource type="Texture2D" uid="uid://p48q15rnvuqo" path="res://minigames/find_the_ball/assets/me when i ate too many mr breast feastables (they were made using the waters of hiroshima).png" id="8_ldbcw"]
+[ext_resource type="Texture2D" uid="uid://df8pxyv6f20tw" path="res://minigames/find_the_ball/assets/me when it is sunny and i see lit kids within the general vicinity of the school im not allowed into.png" id="9_do8qw"]
+
+[node name="find_the_ball" type="Node2D"]
+script = ExtResource("1_tp3dq")
+moves = 10
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+custom_minimum_size = Vector2(512, 512)
+offset_right = 512.0
+offset_bottom = 512.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 200
+text = "1"
+
+[node name="table" type="Sprite2D" parent="."]
+position = Vector2(256, 445)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_5ddut")
+
+[node name="cup1" type="TextureButton" parent="."]
+offset_left = 92.0
+offset_top = 309.0
+offset_right = 220.0
+offset_bottom = 437.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(64, 64)
+focus_neighbor_left = NodePath("../cup3")
+focus_neighbor_top = NodePath("../cup3")
+focus_neighbor_right = NodePath("../cup2")
+focus_neighbor_bottom = NodePath("../cup2")
+focus_next = NodePath("../cup2")
+focus_previous = NodePath("../cup3")
+texture_normal = ExtResource("3_a5kxm")
+texture_focused = ExtResource("3_88gng")
+
+[node name="cup2" type="TextureButton" parent="."]
+offset_left = 192.0
+offset_top = 309.0
+offset_right = 320.0
+offset_bottom = 437.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(64, 64)
+focus_neighbor_left = NodePath("../cup1")
+focus_neighbor_top = NodePath("../cup1")
+focus_neighbor_right = NodePath("../cup3")
+focus_neighbor_bottom = NodePath("../cup3")
+focus_next = NodePath("../cup3")
+focus_previous = NodePath("../cup1")
+texture_normal = ExtResource("3_a5kxm")
+texture_focused = ExtResource("3_88gng")
+
+[node name="ball" type="Sprite2D" parent="cup2"]
+show_behind_parent = true
+position = Vector2(64, -200)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_u81im")
+
+[node name="cup3" type="TextureButton" parent="."]
+offset_left = 292.0
+offset_top = 309.0
+offset_right = 420.0
+offset_bottom = 437.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(64, 64)
+focus_neighbor_left = NodePath("../cup2")
+focus_neighbor_top = NodePath("../cup2")
+focus_neighbor_right = NodePath("../cup1")
+focus_neighbor_bottom = NodePath("../cup1")
+focus_next = NodePath("../cup1")
+focus_previous = NodePath("../cup2")
+texture_normal = ExtResource("3_a5kxm")
+texture_focused = ExtResource("3_88gng")
+
+[node name="MeKnowingIShartedButNobodyCanPinpointItWasMe" type="Sprite2D" parent="."]
+position = Vector2(74, 98)
+texture = ExtResource("6_l00i3")
+
+[node name="MeWenIForgotAbtTheLitKidsInMyBasementAndTheyGotOut" type="Sprite2D" parent="."]
+position = Vector2(361, 153)
+texture = ExtResource("7_qauvl")
+
+[node name="MeWhenIAteTooManyMrBreastFeastables(theyWereMadeUsingTheWatersOfHiroshima)" type="Sprite2D" parent="."]
+position = Vector2(46, 278)
+texture = ExtResource("8_ldbcw")
+
+[node name="MeWhenItIsSunnyAndISeeLitKidsWithinTheGeneralVicinityOfTheSchoolImNotAllowedInto" type="Sprite2D" parent="."]
+position = Vector2(135, 249)
+texture = ExtResource("9_do8qw")
+
+[connection signal="pressed" from="cup1" to="." method="_on_cup_1_pressed"]
+[connection signal="pressed" from="cup2" to="." method="_on_cup_2_pressed"]
+[connection signal="pressed" from="cup3" to="." method="_on_cup_3_pressed"]

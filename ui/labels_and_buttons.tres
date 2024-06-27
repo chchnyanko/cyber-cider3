@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cbeib5ysf2qfu"]
+
+[ext_resource type="FontFile" uid="uid://d2ijad3n3mv" path="res://ui/Splatoon2.otf" id="1_bb5lr"]
+
+[resource]
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("1_bb5lr")
+Label/font_sizes/font_size = 100
+Label/fonts/font = ExtResource("1_bb5lr")
