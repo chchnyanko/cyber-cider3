@@ -2,56 +2,60 @@ extends CharacterBody3D
 
 class_name player
 
-@export var camera : Node3D
+@export var camera : Node3D #the camera that will be following the player
 
-@onready var statemachine = $statemachine
-@onready var sprite = $AnimatedSprite3D
-@onready var ceiling_checker = $ceiling_checker
-@onready var shadow_ray = $shadow_ray
-@onready var shadow = $shadow
+@onready var statemachine = $statemachine #the parent node of all of the states
+@onready var sprite = $AnimatedSprite3D #the animated sprite node in charge of the visuals of the player
+@onready var ceiling_checker = $ceiling_checker #the shapecast used to check if there is a low ceiling
+@onready var shadow_ray = $shadow_ray #the raycast used to project the shadow of the player
+@onready var shadow = $shadow #the decal used to show the player's shadow
 
-var current_state : state = null
-var previous_state : state = null
+var current_state : state = null #the state that is currently active
+var previous_state : state = null #the last state that was active
 
-var input_dir : Vector2
+var input_dir : Vector2 #a vector of the directional input
 
-var ceiling : bool
+var ceiling : bool #tells if there is a low ceiling above the player or not
 
-var last_wall_pos : Vector3
+var last_wall_pos : Vector3 #the last position where the player was on a wall
 
+#called when the player first gets instanced by the scene
 func _ready():
+	#set the states, player and ceiling checker variables for the states
 	for states in statemachine.get_children():
 		states.states = statemachine
 		states.player = self
 		states.ceiling_checker = ceiling_checker
+	#set the players initial state
 	current_state = statemachine.idle
 
+#called every physics frame
 func _physics_process(delta):
+	#used for kinematic body interactions with the world
 	move_and_slide()
-	
-	change_state(current_state.update(delta))
-	
+	#update the input direction
 	input_dir = Input.get_vector("left", "right", "up", "down")
-	
+	#upate the current state which will return a state to change to or null
+	change_state(current_state.update(delta))
+	#flip the sprite to face the direction the player is moving
 	if input_dir.x < 0:
 		sprite.flip_h = true
 	elif input_dir.x > 0:
 		sprite.flip_h = false
-	
-	if Input.is_action_just_pressed("change_camera"):
-		change_camera("change")
-	
+	#reset the last wall position if the player has gotten far enough from the wall
 	if last_wall_pos != Vector3.ZERO:
 		if abs(last_wall_pos - global_transform.origin).length_squared() > 4:
 			last_wall_pos = Vector3.ZERO
-	
+	#set the shadow's position
 	shadow_ray.force_raycast_update()
 	var ray_pos = shadow_ray.get_collision_point()
 	shadow.global_position = ray_pos
 	
+	#change the camera state if the player presses the change camera button
+	if Input.is_action_just_pressed("change_camera"):
+		change_camera("change")
+	
 	#debug
-	
-	
 	$CanvasLayer/VBoxContainer/velocity.text = str("Current Velocity: ", get_position_delta())
 	$CanvasLayer/VBoxContainer/state.text = str("Current State: ", current_state.name)
 	$CanvasLayer/VBoxContainer/animation.text = str("Current Animation: ", sprite.animation)
@@ -64,18 +68,26 @@ func _physics_process(delta):
 	$CanvasLayer/VBoxContainer/wall_normal.text = str("Wall Normal: ", get_wall_normal())
 	$CanvasLayer/VBoxContainer/last_climb_pos.text = str("Last Climb Position: ", last_wall_pos)
 
+#called every frame when updating the state, can also change the current state
 func change_state(next_state):
+	#if the player state is changing
 	if next_state != null:
+		#set previous state to the state that we just exit and call exit state on that state
 		previous_state = current_state
 		previous_state.exit_state()
+		#set current state to the new state and call enter state on that state
 		current_state = next_state
 		current_state.enter_state()
 
+#called when changing the player's animation
 func play_animation(animation):
 	sprite.play(animation)
 
+#called when changing the camera's state
 func change_camera(camera_pos):
 	camera.change_state(camera_pos)
+
+
 
 #debug
 func _on_check_button_pressed():

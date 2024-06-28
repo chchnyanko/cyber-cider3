@@ -1,22 +1,25 @@
 extends Node2D
 
-@onready var ball = $cup2/ball
+@export_range(3,100) var moves : int #the maximum number of moves that the ball will make before stopping
 
-@export var moves : int
+@onready var ball = $cup2/ball #reference to the ball node
 
-var current : bool = false
+var current : bool = false #set to true if this is the minigame that is currently being played
 
-var cups : Array
-var cup_pos : Array
-var cup_target_pos : Array = [0, 1, 2]
+var cups : Array #stores references to each cup
+var cup_pos : Array #stores the target position of each cup
+var cup_target_pos : Array = [0, 1, 2] #stores the number position of where the cup should go to
 
-var moving : bool = false
-var cup_moving : bool = false
-var finished_moving : bool = false
-var selected_cup : int 
+var moving : bool = false #if the moves variable is above 0 this will be true else false
+var cup_moving : bool = false #if the cups are currenly moving
+var finished_moving : bool = false #if all of the cups have finished moving
+var selected_cup : int #the cup that is currently selected by the player
 
+#called when this scene is first instanced
 func _ready():
+	#for each of this node's children
 	for cup in get_children():
+		#if it is a button add it to the arrays
 		if cup is TextureButton:
 			cups.append(cup)
 			cup_pos.append(cup.position)

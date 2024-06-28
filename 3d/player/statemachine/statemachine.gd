@@ -1,5 +1,6 @@
 extends Node
 
+#references to all of the states
 @onready var idle = $idle
 @onready var walk = $walk
 @onready var jump = $jump
