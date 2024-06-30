@@ -13,16 +13,16 @@ func change_colour():
 	for i in get_children():
 		#if it is a button
 		if i is Button:
-			#connect the mouse entered signal
-			i.mouse_entered.connect(hover.bind(i))
 			#set the randomised colour for each button
 			randomize()
 			colours[i] = Color(randf_range(0, 0.4),randf_range(0, 0.4),randf_range(0, 0.4))
 
-#called when the mouse enters each button
-func hover(button):
-	#change the background colour to the random colour set in change colour
-	$ColorRect.color = colours.get(button)
+#called every process frame
+func _process(delta):
+	#if there is a button being focussed
+	if get_viewport().gui_get_focus_owner():
+		#set the background colour of that of the button
+		$ColorRect.color = colours.get(get_viewport().gui_get_focus_owner())
 
 #debug
 func _input(event):

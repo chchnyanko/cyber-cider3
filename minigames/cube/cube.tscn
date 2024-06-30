@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://uoxjiag2bmf3"]
+[gd_scene load_steps=35 format=3 uid="uid://uoxjiag2bmf3"]
 
 [ext_resource type="Script" path="res://minigames/cube/cube.gd" id="1_m8ksb"]
 [ext_resource type="PackedScene" uid="uid://l67j7hwejx0g" path="res://minigames/find_the_ball/find_the_ball.tscn" id="2_ubc0f"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cofbhsodnmw5w" path="res://minigames/pinball/pinball.tscn" id="6_sdl6q"]
 [ext_resource type="PackedScene" uid="uid://bw6wf7fdodguo" path="res://minigames/match-a-block/match_a_block.tscn" id="7_ls5m1"]
 [ext_resource type="PackedScene" uid="uid://cj25o88urgm2f" path="res://ui/pause.tscn" id="8_4w267"]
+[ext_resource type="Script" path="res://minigames/cube/input_forwarder.gd" id="9_a1d24"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vhntr"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -76,6 +77,46 @@ viewport_path = NodePath("faces/game6")
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_yumti")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_xlbpv"]
+
+[sub_resource type="Animation" id="Animation_apxha"]
+resource_name = "start_game"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(2.08165e-12, 2.08165e-12, 2), Vector3(2.08165e-12, 2.08165e-12, 1.15)]
+}
+
+[sub_resource type="Animation" id="Animation_lb1y8"]
+resource_name = "end_game"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(2.08165e-12, 2.08165e-12, 1.15), Vector3(2.08165e-12, 2.08165e-12, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pw0wg"]
+_data = {
+"end_game": SubResource("Animation_lb1y8"),
+"start_game": SubResource("Animation_apxha")
+}
+
 [node name="cube" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -121,7 +162,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_t4bed")
 
 [node name="game1" type="SubViewport" parent="faces"]
 disable_3d = true
-physics_object_picking = true
+gui_embed_subwindows = true
+render_target_update_mode = 4
 
 [node name="game2" type="SubViewport" parent="faces"]
 disable_3d = true
@@ -139,6 +181,20 @@ disable_3d = true
 disable_3d = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 1.15)
 
 [node name="pause_screen" parent="." instance=ExtResource("8_4w267")]
+
+[node name="input_forwarder" type="Area3D" parent="."]
+input_capture_on_drag = true
+script = ExtResource("9_a1d24")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="input_forwarder"]
+shape = SubResource("BoxShape3D_xlbpv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pw0wg")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="faces" method="_on_animation_player_animation_finished"]

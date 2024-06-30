@@ -79,44 +79,26 @@ func _process(delta):
 						moving = false
 						finished_moving = true
 						selected_cup = 0
-		#when the cups have finished moving
-		if finished_moving:
-			#set the button's focus
-			cups[cup_target_pos.find(selected_cup)].grab_focus()
-			#change the button's focus if the player pressses any directional input
-			if Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_up"):
-				selected_cup -= 1
-				if selected_cup < 0:
-					selected_cup = cups.size() - 1
-			if Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("ui_down"):
-				selected_cup += 1
-				if selected_cup >= cups.size():
-					selected_cup = 0
-			#if the player presses the accept button, press the button
-			if Input.is_action_just_pressed("ui_accept"):
-				cups[cup_target_pos.find(selected_cup)].emit_signal("pressed")
-	
-	#debug
-	if Input.is_action_just_pressed("crawl"):
-		current = true
-
-func _on_cup_1_pressed():
-	print("1 pressed")
-	if finished_moving:
-		lose()
-
-func _on_cup_2_pressed():
-	print("2 pressed")
-	if finished_moving:
-		win()
-
-func _on_cup_3_pressed():
-	print("3 pressed")
-	if finished_moving:
-		lose()
+						
+						cups[cup_target_pos.find(0)].grab_focus()
 
 func win():
 	print("You win")
 
 func lose():
 	print("You lose")
+
+func _on_cup_1_button_down():
+	print("1 pressed")
+	if finished_moving:
+		lose()
+
+func _on_cup_2_button_down():
+	print("2 pressed")
+	if finished_moving:
+		win()
+
+func _on_cup_3_button_down():
+	print("3 pressed")
+	if finished_moving:
+		lose()

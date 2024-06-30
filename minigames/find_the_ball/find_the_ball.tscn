@@ -101,6 +101,9 @@ texture = ExtResource("8_ldbcw")
 position = Vector2(135, 249)
 texture = ExtResource("9_do8qw")
 
+[connection signal="button_down" from="cup1" to="." method="_on_cup_1_button_down"]
 [connection signal="pressed" from="cup1" to="." method="_on_cup_1_pressed"]
+[connection signal="button_down" from="cup2" to="." method="_on_cup_2_button_down"]
 [connection signal="pressed" from="cup2" to="." method="_on_cup_2_pressed"]
+[connection signal="button_down" from="cup3" to="." method="_on_cup_3_button_down"]
 [connection signal="pressed" from="cup3" to="." method="_on_cup_3_pressed"]
