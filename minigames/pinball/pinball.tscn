@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=3 uid="uid://cofbhsodnmw5w"]
+[gd_scene load_steps=132 format=3 uid="uid://cofbhsodnmw5w"]
 
 [ext_resource type="Script" path="res://minigames/pinball/pinball.gd" id="1_62yso"]
 [ext_resource type="Texture2D" uid="uid://ck3d4jfnw35hf" path="res://minigames/pinball/assets/dreamcat_die.png" id="2_n8u74"]
@@ -857,16 +857,22 @@ radius = 17.0294
 size = Vector2(25, 507)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dtgr"]
-size = Vector2(28, 375)
+size = Vector2(28, 418)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pm7jx"]
-size = Vector2(506, 30)
+size = Vector2(506, 161)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g3dio"]
 size = Vector2(128, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yjihj"]
 size = Vector2(87, 118)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abbkx"]
+size = Vector2(410, 137)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u650w"]
+size = Vector2(161, 20)
 
 [node name="pinball" type="Node2D"]
 script = ExtResource("1_62yso")
@@ -901,29 +907,55 @@ position = Vector2(500.5, 255.5)
 shape = SubResource("RectangleShape2D_leprl")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="level"]
-position = Vector2(432, 323.5)
+position = Vector2(432, 302)
 shape = SubResource("RectangleShape2D_2dtgr")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="level"]
-position = Vector2(253, 497)
+position = Vector2(253, 570)
 shape = SubResource("RectangleShape2D_pm7jx")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="level"]
-position = Vector2(468, 34)
+position = Vector2(465, 44)
 rotation = 0.599709
 shape = SubResource("RectangleShape2D_g3dio")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="level"]
-position = Vector2(258, 15)
+position = Vector2(258, -50.5)
 shape = SubResource("RectangleShape2D_pm7jx")
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="level"]
 position = Vector2(14, 253)
 shape = SubResource("RectangleShape2D_leprl")
 
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+[node name="spring" type="Area2D" parent="."]
 position = Vector2(462, 494)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
-position = Vector2(5.5, 49)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="spring"]
+position = Vector2(3, 66)
 shape = SubResource("RectangleShape2D_yjihj")
+
+[node name="death" type="Area2D" parent="."]
+position = Vector2(462, 494)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="death"]
+position = Vector2(-239, 5.5)
+shape = SubResource("RectangleShape2D_abbkx")
+
+[node name="paddleL" type="AnimatableBody2D" parent="."]
+position = Vector2(19, 406)
+rotation = 0.174374
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paddleL"]
+position = Vector2(70.5, 0)
+shape = SubResource("RectangleShape2D_u650w")
+
+[node name="paddleR" type="AnimatableBody2D" parent="."]
+position = Vector2(424, 407)
+rotation = -0.174533
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="paddleR"]
+position = Vector2(-70.5, 2.08165e-12)
+shape = SubResource("RectangleShape2D_u650w")
+
+[connection signal="body_entered" from="spring" to="." method="_on_spring_body_entered"]
+[connection signal="body_entered" from="death" to="." method="_on_death_body_entered"]

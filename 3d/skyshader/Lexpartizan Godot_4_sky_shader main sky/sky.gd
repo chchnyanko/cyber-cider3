@@ -195,6 +195,6 @@ func _process(delta:float):
 func _ready():
 	set_process(false);
 
-#func _input(event):
-	#if event.is_action_pressed("ui_accept"):
-		#lighting_strike = true;
+func _input(event):
+	if event.is_action_pressed("ui_accept"):
+		lighting_strike = true;
