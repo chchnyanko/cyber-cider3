@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dygn0wc000wpu"
+path="res://.godot/imported/thunder.ogg-a1e07f1040d7fcf246500199c4e1aa90.oggvorbisstr"
+
+[deps]
+
+source_file="res://3d/skyshader/Lexpartizan Godot_4_sky_shader main sky/thunder.ogg"
+dest_files=["res://.godot/imported/thunder.ogg-a1e07f1040d7fcf246500199c4e1aa90.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

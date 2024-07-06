@@ -79,8 +79,6 @@ func _process(delta):
 						moving = false
 						finished_moving = true
 						selected_cup = 0
-						
-						cups[cup_target_pos.find(0)].grab_focus()
 
 func win():
 	print("You win")

@@ -28,3 +28,4 @@ func enter_state():
 #set the camera state to back
 func exit_state():
 	player.change_camera("back")
+

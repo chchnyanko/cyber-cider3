@@ -10,6 +10,7 @@
 colors = PackedColorArray(0.57902, 0.57902, 0.57902, 1, 1, 1, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4p4ad"]
+offset = Vector3(2.08167e-14, 2.08167e-14, 2.08167e-14)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vqgpw"]
 color_ramp = SubResource("Gradient_5wvu8")

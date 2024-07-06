@@ -87,8 +87,7 @@ func play_animation(animation):
 func change_camera(camera_pos):
 	camera.change_state(camera_pos)
 
-
-
 #debug
 func _on_check_button_pressed():
 	$CanvasLayer/VBoxContainer.visible = !$CanvasLayer/VBoxContainer.visible
+

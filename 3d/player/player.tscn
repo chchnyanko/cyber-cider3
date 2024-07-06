@@ -30,7 +30,7 @@ sprite_frames = ExtResource("2_pg84s")
 animation = &"dash"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, -4.25983e-09, 0, 1, 0, 4.25983e-09, 0, 1, 2.08165e-12, 0.204194, 2.08165e-12)
+transform = Transform3D(1, 0, -4.25983e-09, 0, 1, 0, 4.25983e-09, 0, 1, 2.08165e-12, 0.2, 2.08165e-12)
 shape = SubResource("BoxShape3D_h452v")
 
 [node name="ceiling_checker" type="ShapeCast3D" parent="."]

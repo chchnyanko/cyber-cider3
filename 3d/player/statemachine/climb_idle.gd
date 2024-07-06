@@ -21,8 +21,8 @@ func enter_state():
 	#when first getting on the wall
 	if !player.previous_state.name.contains("climb"):
 		player.transform.origin.y += 1
+	#if they were on the wall set the camera state to climb before the camera tries to go to back
 	else:
-		#if they were on the wall set the camera state to climb before the camera tries to go to back
 		player.change_camera("climb")
 	#wait 1 frame and set the camera state to climb
 	#this is done because sometimes the player will enter the climb state without wanting to climb a wall

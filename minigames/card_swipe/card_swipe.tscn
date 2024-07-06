@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://cv1gm3f7hq4b4"]
+[gd_scene load_steps=8 format=3 uid="uid://cv1gm3f7hq4b4"]
 
 [ext_resource type="Script" path="res://minigames/card_swipe/card_swipe.gd" id="1_7oefq"]
+[ext_resource type="Texture2D" uid="uid://p48q15rnvuqo" path="res://minigames/find_the_ball/assets/me when i ate too many mr breast feastables (they were made using the waters of hiroshima).png" id="2_4ep26"]
+[ext_resource type="Texture2D" uid="uid://duvy7tpaywnmn" path="res://minigames/find_the_ball/assets/tablet.png" id="3_tag0m"]
+[ext_resource type="Texture2D" uid="uid://bsl38iifwba3h" path="res://3d/player/sprites/shadow.png" id="4_ejfx7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ed0do"]
+size = Vector2(47, 84)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ffgra"]
+size = Vector2(224, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_viryk"]
+size = Vector2(40, 80)
 
 [node name="card_swipe" type="Node2D"]
 script = ExtResource("1_7oefq")
@@ -16,3 +28,54 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 200
 text = "2"
+
+[node name="card" type="Area2D" parent="."]
+position = Vector2(320, 366)
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="card"]
+texture = ExtResource("2_4ep26")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="card"]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_ed0do")
+
+[node name="card_swiper" type="Area2D" parent="."]
+position = Vector2(308, 185)
+
+[node name="Sprite2D" type="Sprite2D" parent="card_swiper"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_tag0m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="card_swiper"]
+shape = SubResource("RectangleShape2D_ffgra")
+
+[node name="card_enter" type="Area2D" parent="card_swiper"]
+position = Vector2(-92, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="card_swiper/card_enter"]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_viryk")
+
+[node name="card_exit" type="Area2D" parent="card_swiper"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="card_swiper/card_exit"]
+position = Vector2(92, 0)
+shape = SubResource("RectangleShape2D_viryk")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+step = 0.01
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("4_ejfx7")
+
+[connection signal="mouse_entered" from="card" to="." method="_on_card_mouse_entered"]
+[connection signal="mouse_exited" from="card" to="." method="_on_card_mouse_exited"]
+[connection signal="area_exited" from="card_swiper" to="." method="_on_card_swiper_area_exited"]
+[connection signal="area_entered" from="card_swiper/card_enter" to="." method="_on_card_enter_area_entered"]
+[connection signal="area_entered" from="card_swiper/card_exit" to="." method="_on_card_exit_area_entered"]

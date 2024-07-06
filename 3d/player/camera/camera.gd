@@ -42,7 +42,8 @@ func _physics_process(_delta):
 		if target.get_wall_normal():
 			pos = target_pos + target.get_wall_normal() * 10
 			target_angle = Vector3(0, atan2(target.get_wall_normal().x, target.get_wall_normal().z) * 2, 0)
-	
+		else:
+			pos = target_pos
 	#if the ray from above is colliding, move the cameras position to the collisions position
 	if result:
 		camera_pos = result.position

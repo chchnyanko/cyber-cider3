@@ -18,7 +18,7 @@ func toggle_pause():
 		focus.release_focus()
 
 #called when there is any input event
-func _input(event):
+func _input(_event):
 	#if the player presses the pause button, toggle pause
 	if Input.is_action_just_pressed("pause"):
 		toggle_pause()

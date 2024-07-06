@@ -2,10 +2,6 @@ shader_type canvas_item;
 
 uniform sampler2D noise;
 
-void vertex() {
-	// Called for every vertex the material is visible on.
-}
-
 void fragment() {
 	COLOR *= texture(noise, UV);
 }
