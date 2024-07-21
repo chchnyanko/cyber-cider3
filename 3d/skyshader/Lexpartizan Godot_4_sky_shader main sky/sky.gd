@@ -140,7 +140,7 @@ func set_time_of_day(value: float):
 	var _minutes = int(clamp(time/60,0.0,59.0))
 	time -= _minutes*60
 	var _seconds = int(clamp(time,0.0,59.0))
-	print (_hours, ":", _minutes, ":", _seconds)
+	#print (_hours, ":", _minutes, ":", _seconds)
 	set_time();
 
 func set_time():
@@ -195,6 +195,15 @@ func _process(delta:float):
 func _ready():
 	set_process(false);
 
-func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		lighting_strike = true;
+var time: float = 0.5
+func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+	time += 0.01 * delta
+	set_time_of_day(time)
+	if time >= 1:
+		time = 0
+
+#func _input(event):
+	#if event.is_action_pressed("ui_accept"):
+		#lighting_strike = true;

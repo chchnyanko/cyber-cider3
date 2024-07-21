@@ -1,0 +1,92 @@
+[gd_scene load_steps=3 format=3 uid="uid://fgfm1ssxwbvd"]
+
+[ext_resource type="Texture2D" uid="uid://bge4hcekirmks" path="res://icon.svg" id="1_bok4j"]
+[ext_resource type="Script" path="res://ui/ui_cursor.gd" id="2_oja3s"]
+
+[node name="credits" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 50
+text = "Credits and licences"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_top = 293.0
+offset_right = 604.0
+offset_bottom = 483.0
+bbcode_enabled = true
+text = "Programming
+Matthew Rickard
+
+2D art
+Levi Donaldson
+
+3D art
+Akash Chattikal"
+
+[node name="LinkButton" type="LinkButton" parent="."]
+layout_mode = 0
+offset_left = 605.0
+offset_top = 2.0
+offset_right = 1003.0
+offset_bottom = 42.0
+text = "Licence for the sky shader by Lexpartizan on github"
+uri = "https://github.com/Lexpartizan/Godot_4_sky_shader"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 605.0
+offset_top = 40.0
+offset_right = 1156.0
+offset_bottom = 648.0
+bbcode_enabled = true
+text = "MIT License
+
+Copyright (c) 2023 Lexpartizan
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the \"Software\"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE."
+
+[node name="Button" type="Button" parent="."]
+editor_description = "ui/title-scene-"
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 166.0
+offset_top = 459.0
+offset_right = 466.0
+offset_bottom = 559.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Back to title screen"
+flat = true
+
+[node name="line" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 2.08165e-12, 2.08165e-12)
+width = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-50, 528)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_bok4j")
+
+[node name="ui_cursor" type="Node" parent="." node_paths=PackedStringArray("cursor", "line", "first_focus")]
+script = ExtResource("2_oja3s")
+cursor = NodePath("../Sprite2D")
+line = NodePath("../line")
+first_focus = NodePath("../Button")

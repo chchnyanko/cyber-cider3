@@ -110,6 +110,14 @@ pivot_offset = Vector2(600, 350)
 mouse_filter = 2
 script = ExtResource("1_s1npe")
 
+[node name="ColorRect" type="ColorRect" parent="pause"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 48.0
+offset_right = 1058.0
+offset_bottom = 602.0
+color = Color(0, 0, 0, 0.784314)
+
 [node name="paused" type="Label" parent="pause"]
 layout_mode = 1
 anchors_preset = 4
@@ -192,6 +200,31 @@ theme = ExtResource("1_fw5yp")
 text = "Back to Title Screen"
 flat = true
 
+[node name="test" type="Button" parent="pause"]
+editor_description = "level/player-hide-"
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 750.0
+offset_top = 457.0
+offset_right = 1050.0
+offset_bottom = 526.0
+grow_horizontal = 0
+grow_vertical = 2
+focus_neighbor_left = NodePath("../options")
+focus_neighbor_top = NodePath("../options")
+focus_neighbor_right = NodePath("../unpause")
+focus_neighbor_bottom = NodePath("../unpause")
+focus_next = NodePath("../unpause")
+focus_previous = NodePath("../options")
+theme = ExtResource("1_fw5yp")
+text = "Hide player (only use this in the 3d scene)"
+flat = true
+
 [node name="cursor" type="Sprite2D" parent="pause"]
 visible = false
 position = Vector2(714, 145)
@@ -217,3 +250,4 @@ libraries = {
 [connection signal="mouse_entered" from="pause/unpause" to="pause" method="_on_unpause_mouse_entered"]
 [connection signal="mouse_entered" from="pause/options" to="pause" method="_on_options_mouse_entered"]
 [connection signal="mouse_entered" from="pause/title_screen" to="pause" method="_on_title_screen_mouse_entered"]
+[connection signal="mouse_entered" from="pause/test" to="pause" method="_on_title_screen_mouse_entered"]

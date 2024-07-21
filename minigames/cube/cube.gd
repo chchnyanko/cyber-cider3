@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var set_faces : Array[PackedScene] #the six minigames that are played on this cube
+@export var set_faces : Array[PackedScene] ## The six minigames that are played on this cube
 
 @onready var animation = $"../AnimationPlayer" #reference to the animation player in charge of moving the camera
 

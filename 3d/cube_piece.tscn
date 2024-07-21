@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba2q6k2bwm4a2"]
+
+[ext_resource type="Script" path="res://3d/cube_piece.gd" id="1_i1wf7"]
+[ext_resource type="Texture2D" uid="uid://2mv60kr6o8vq" path="res://minigames/find_the_ball/assets/cupetha.png" id="2_3aw56"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bu4g8"]
+points = PackedVector3Array(-1, 2.08165e-12, -1, 1, 2.08165e-12, -1, 1, 2.08165e-12, 1, -1, 2.08165e-12, 1, 2.08165e-12, 1, 2.08165e-12)
+
+[node name="cube_piece" type="Area3D"]
+script = ExtResource("1_i1wf7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_bu4g8")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.404722, 0)
+billboard = 1
+texture = ExtResource("2_3aw56")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

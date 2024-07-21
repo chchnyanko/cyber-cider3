@@ -1,6 +1,6 @@
 extends Node2D
 
-@export_range(3,100) var moves : int #the maximum number of moves that the ball will make before stopping
+@export_range(3,100) var moves : int ## The maximum number of moves that the ball will make before stopping
 
 @onready var ball = $cup2/ball #reference to the ball node
 

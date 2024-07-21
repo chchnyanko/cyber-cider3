@@ -2,9 +2,9 @@ extends Node
 
 class_name state
 
-const gravity : float = -5 #constant velocity used when player gravity function is called
+const gravity : float = -2.5 #constant velocity used when player gravity function is called
 const terminal_velocity : float = -40 #maximum gravity
-const climb_speed : Vector2 = Vector2(10, 10) #velocity when climbing walls, (horizontal, vertical)
+const climb_speed : Vector2 = Vector2(10, 15) #velocity when climbing walls, (horizontal, vertical)
 
 var states = null #reference to the $statemachine node used by states to set the state
 var player : player = null #reference to the player node

@@ -1,7 +1,7 @@
 extends Area3D
 
-@export var pos : Vector3 #the position that the camera will be locked in
-@export var angle_rad : Vector3 #the angle of the camera when locked
+@export var pos : Vector3 ## The position that the camera will be locked in
+@export var angle_rad : Vector3 ## The angle of the camera when locked
 
 #called when a body enters the area
 func _on_body_entered(body):

@@ -1,11 +1,13 @@
 extends "res://3d/player/statemachine/state.gd"
 
 var jump_speed : float = 50 #vertical velocity when jumping
+var speed : float = 12 #horizontal velocity when jumping
 
 #called each frame while the player's current state = jump
 func update(_delta):
 	#apply gravity to the player
 	player_gravity()
+	player_movement(speed)
 	
 	#change states
 	#if the player is moving down set state to fall

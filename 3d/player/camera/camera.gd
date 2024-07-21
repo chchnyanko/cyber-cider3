@@ -2,12 +2,12 @@ extends Node3D
 
 #preset [position, angle] for each of the camera states
 const position_presets : Dictionary = {
-	"back" : [Vector3(0, 3, 7), Vector3(-0.35, 0, 0)],
+	"back" : [Vector3(0, 5, 4), Vector3(-PI/2, 0, 0)],
 	"side" : [Vector3(10, 0, 0), Vector3(0, PI, 0)]
 }
 
 
-@export var target : Node #the node that this camera will be targeting / following
+@export var target : Node ## The node that this camera will be targeting / following (usually the player)
 
 @onready var camera = $Camera3D #the camera node
 

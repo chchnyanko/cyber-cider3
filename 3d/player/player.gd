@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 class_name player
 
-@export var camera : Node3D #the camera that will be following the player
+@export var camera : Node3D ## The camera that will be following the player
 
 @onready var statemachine = $statemachine #the parent node of all of the states
 @onready var sprite = $AnimatedSprite3D #the animated sprite node in charge of the visuals of the player
@@ -20,7 +20,7 @@ var ceiling : bool #tells if there is a low ceiling above the player or not
 var last_wall_pos : Vector3 #the last position where the player was on a wall
 
 #called when the player first gets instanced by the scene
-func _ready():
+func _ready() -> void:
 	#set the states, player and ceiling checker variables for the states
 	for states in statemachine.get_children():
 		states.states = statemachine
@@ -30,7 +30,7 @@ func _ready():
 	current_state = statemachine.idle
 
 #called every physics frame
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	#used for kinematic body interactions with the world
 	move_and_slide()
 	#update the input direction
@@ -56,6 +56,8 @@ func _physics_process(delta):
 		change_camera("change")
 	
 	#debug
+	if $CanvasLayer/VBoxContainer.size > $CanvasLayer/VBoxContainer.custom_minimum_size:
+		$CanvasLayer/VBoxContainer.custom_minimum_size = $CanvasLayer/VBoxContainer.size
 	$CanvasLayer/VBoxContainer/velocity.text = str("Current Velocity: ", get_position_delta())
 	$CanvasLayer/VBoxContainer/state.text = str("Current State: ", current_state.name)
 	$CanvasLayer/VBoxContainer/animation.text = str("Current Animation: ", sprite.animation)
@@ -69,9 +71,15 @@ func _physics_process(delta):
 	$CanvasLayer/VBoxContainer/last_climb_pos.text = str("Last Climb Position: ", last_wall_pos)
 
 #called every frame when updating the state, can also change the current state
-func change_state(next_state):
+func change_state(next_state: state) -> void:
 	#if the player state is changing
 	if next_state != null:
+		if next_state.name.contains("climb"):
+			if !unlocks.climb:
+				return
+		if next_state.name == "crawl":
+			if !unlocks.crawl:
+				return
 		#set previous state to the state that we just exit and call exit state on that state
 		previous_state = current_state
 		previous_state.exit_state()
@@ -80,14 +88,25 @@ func change_state(next_state):
 		current_state.enter_state()
 
 #called when changing the player's animation
-func play_animation(animation):
+func play_animation(animation: String) -> void:
 	sprite.play(animation)
 
 #called when changing the camera's state
-func change_camera(camera_pos):
+func change_camera(camera_pos: String) -> void:
 	camera.change_state(camera_pos)
 
 #debug
-func _on_check_button_pressed():
+func _on_check_button_pressed() -> void:
 	$CanvasLayer/VBoxContainer.visible = !$CanvasLayer/VBoxContainer.visible
+	$CanvasLayer/CheckButton.release_focus()
 
+func _on_button_pressed() -> void:
+	unlocks.climb = true
+	unlocks.crawl = true
+	for i in unlocks.cube_1:
+		i = true
+	for i in unlocks.cube_2:
+		i = true
+	for i in unlocks.cube_3:
+		i = true
+	$CanvasLayer/VBoxContainer/Button.queue_free()

@@ -53,6 +53,9 @@ script = ExtResource("5_ebvej")
 [node name="fall" type="Node" parent="statemachine"]
 script = ExtResource("6_48asj")
 
+[node name="coyote_timer" type="Timer" parent="statemachine/fall"]
+one_shot = true
+
 [node name="climb" type="Node" parent="statemachine"]
 script = ExtResource("7_upnuh")
 
@@ -71,6 +74,7 @@ script = ExtResource("10_r4wot")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+visible = false
 offset_top = 54.0
 offset_right = 381.0
 offset_bottom = 464.0
@@ -129,11 +133,15 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "Last Climb Position: "
 
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Unlock all"
+
 [node name="CheckButton" type="CheckButton" parent="CanvasLayer"]
 offset_right = 44.0
 offset_bottom = 24.0
 theme_override_font_sizes/font_size = 30
-button_pressed = true
 text = "show debug"
 
 [node name="shadow_ray" type="RayCast3D" parent="."]
@@ -144,5 +152,10 @@ size = Vector3(1, 0.001, 1)
 texture_albedo = ExtResource("12_00qq7")
 modulate = Color(1, 1, 1, 0.588235)
 
+[node name="light" type="OmniLight3D" parent="."]
+light_color = Color(1, 1, 0.639216, 1)
+
+[connection signal="timeout" from="statemachine/fall/coyote_timer" to="statemachine/fall" method="_on_coyote_timer_timeout"]
 [connection signal="timeout" from="statemachine/climb_jump/Timer" to="statemachine/climb_jump" method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/CheckButton" to="." method="_on_check_button_pressed"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo1gvdkpgg7el"]
+
+[ext_resource type="Script" path="res://3d/unlock.gd" id="1_oi3u3"]
+[ext_resource type="Texture2D" uid="uid://bge4hcekirmks" path="res://icon.svg" id="2_s0o5n"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6agvn"]
+radius = 1.0
+
+[node name="unlock" type="Area3D"]
+script = ExtResource("1_oi3u3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_6agvn")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+texture = ExtResource("2_s0o5n")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,6 +1,6 @@
 extends "res://3d/player/statemachine/state.gd"
 
-var speed : float = 10 #the horizontal velocity when walking
+var speed : float = 15 #the horizontal velocity when walking
 
 #called each frame while the player's current state = walk
 func update(_delta):

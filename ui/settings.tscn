@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwgogj5q6epel"]
+
+[ext_resource type="Script" path="res://ui/settings.gd" id="1_51p41"]
+[ext_resource type="Theme" uid="uid://cbeib5ysf2qfu" path="res://ui/labels_and_buttons.tres" id="1_lu7we"]
+[ext_resource type="Texture2D" uid="uid://bge4hcekirmks" path="res://icon.svg" id="1_npwsv"]
+[ext_resource type="Script" path="res://ui/ui_cursor.gd" id="2_15pe7"]
+
+[node name="settings" type="Node2D"]
+script = ExtResource("1_51p41")
+
+[node name="line" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 2.08165e-12, 2.08165e-12)
+width = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-61, 246)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_npwsv")
+
+[node name="Back" type="Button" parent="."]
+editor_description = "ui/title-scene-"
+custom_minimum_size = Vector2(300, 100)
+offset_left = 102.0
+offset_top = 416.0
+offset_right = 402.0
+offset_bottom = 516.0
+focus_neighbor_left = NodePath("../setting1")
+focus_neighbor_top = NodePath("../setting2")
+focus_neighbor_right = NodePath("../setting2")
+focus_neighbor_bottom = NodePath("../setting1")
+focus_next = NodePath("../setting1")
+focus_previous = NodePath("../setting2")
+theme = ExtResource("1_lu7we")
+text = "Back to title screen"
+flat = true
+
+[node name="setting1" type="Button" parent="."]
+custom_minimum_size = Vector2(300, 100)
+offset_left = 646.0
+offset_top = 159.0
+offset_right = 946.0
+offset_bottom = 259.0
+focus_neighbor_left = NodePath("../Back")
+focus_neighbor_top = NodePath("../Back")
+focus_neighbor_right = NodePath("../setting2")
+focus_neighbor_bottom = NodePath("../setting2")
+focus_next = NodePath("../setting2")
+focus_previous = NodePath("../Back")
+theme = ExtResource("1_lu7we")
+text = "Fullscreen"
+flat = true
+
+[node name="setting2" type="Button" parent="."]
+custom_minimum_size = Vector2(300, 100)
+offset_left = 656.0
+offset_top = 326.0
+offset_right = 956.0
+offset_bottom = 426.0
+focus_neighbor_left = NodePath("../Back")
+focus_neighbor_top = NodePath("../setting1")
+focus_neighbor_right = NodePath("../Back")
+focus_neighbor_bottom = NodePath("../Back")
+focus_next = NodePath("../Back")
+focus_previous = NodePath("../setting1")
+theme = ExtResource("1_lu7we")
+text = "Setting 2"
+flat = true
+
+[node name="ui_cursor" type="Node" parent="." node_paths=PackedStringArray("cursor", "line", "first_focus")]
+script = ExtResource("2_15pe7")
+cursor = NodePath("../Sprite2D")
+line = NodePath("../line")
+first_focus = NodePath("../setting1")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 382.0
+offset_bottom = 200.0
+theme = ExtResource("1_lu7we")
+text = "Settings"
+autowrap_mode = 2
+
+[connection signal="pressed" from="setting1" to="." method="_on_setting_1_pressed"]

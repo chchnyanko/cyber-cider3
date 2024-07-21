@@ -1,222 +1,189 @@
-[gd_scene load_steps=25 format=3 uid="uid://djkb31k0ugdsd"]
+[gd_scene load_steps=18 format=3 uid="uid://djkb31k0ugdsd"]
 
 [ext_resource type="PackedScene" uid="uid://twsequ8kvxuv" path="res://3d/player/player.tscn" id="1_8vvr4"]
 [ext_resource type="PackedScene" uid="uid://cs2fptc2k4veq" path="res://3d/skyshader/Lexpartizan Godot_4_sky_shader main sky/Sky.tscn" id="1_q8ltg"]
 [ext_resource type="PackedScene" uid="uid://d3qnirpixvv1k" path="res://3d/player/camera/camera.tscn" id="2_p1qa6"]
-[ext_resource type="PackedScene" uid="uid://bcu2ijbvjvegw" path="res://3d/base_build.tscn" id="3_iqad4"]
-[ext_resource type="PackedScene" uid="uid://wcrlw1ltvmmh" path="res://3d/base.tscn" id="4_yivut"]
-[ext_resource type="PackedScene" uid="uid://b6vrrx22e4gsf" path="res://3d/first.tscn" id="5_t4od8"]
-[ext_resource type="PackedScene" uid="uid://dcupasxxe2idi" path="res://3d/tower.tscn" id="6_l5nu0"]
-[ext_resource type="PackedScene" uid="uid://b4t0pd6x1ttiq" path="res://3d/building_.tscn" id="7_muuga"]
-[ext_resource type="Script" path="res://3d/camera_lock.gd" id="8_tjon2"]
+[ext_resource type="Shader" path="res://3d/minimap.gdshader" id="6_inlpo"]
+[ext_resource type="Texture2D" uid="uid://bge4hcekirmks" path="res://icon.svg" id="7_eiwns"]
+[ext_resource type="Script" path="res://3d/minimap.gd" id="7_m8g1n"]
+[ext_resource type="Texture2D" uid="uid://bsl38iifwba3h" path="res://3d/player/sprites/shadow.png" id="9_bkphk"]
 [ext_resource type="PackedScene" uid="uid://cj25o88urgm2f" path="res://ui/pause.tscn" id="9_xn65n"]
+[ext_resource type="Script" path="res://3d/clock.gd" id="10_03rft"]
+[ext_resource type="Script" path="res://3d/unlock_ability.gd" id="11_4vq73"]
 [ext_resource type="PackedScene" uid="uid://c4swtn477p4du" path="res://3d/cube_2.tscn" id="11_dwc4c"]
-[ext_resource type="PackedScene" uid="uid://c2u253k7r8jp7" path="res://3d/new_building.tscn" id="12_7up6h"]
+[ext_resource type="PackedScene" uid="uid://bo1gvdkpgg7el" path="res://3d/unlock.tscn" id="11_isey8"]
 
-[sub_resource type="PrismMesh" id="PrismMesh_opcoe"]
-left_to_right = 1.11022e-16
-size = Vector3(10, 1, 10)
+[sub_resource type="PlaneMesh" id="PlaneMesh_epywe"]
+size = Vector2(200, 200)
 
-[sub_resource type="PrismMesh" id="PrismMesh_sl7hu"]
-left_to_right = 1.11022e-16
-size = Vector3(10, 3, 10)
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lkgcg"]
+data = PackedVector3Array(100, 0, 100, -100, 0, 100, 100, 0, -100, -100, 0, 100, -100, 0, -100, 100, 0, -100)
 
-[sub_resource type="PrismMesh" id="PrismMesh_0d5ws"]
-left_to_right = 1.11022e-16
-size = Vector3(10, 5, 10)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bd7vg"]
+shader = ExtResource("6_inlpo")
+shader_parameter/centre = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.5
+shader_parameter/player_pos = Vector2(0.52, 0.6)
+shader_parameter/background_colour = null
+shader_parameter/player_indicator = ExtResource("7_eiwns")
 
-[sub_resource type="PrismMesh" id="PrismMesh_rimee"]
-left_to_right = 1.11022e-16
-size = Vector3(10, 7, 10)
+[sub_resource type="Animation" id="Animation_oi0ve"]
+resource_name = "new_ability"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1155, 3), Vector2(353, 3), Vector2(353, 3), Vector2(1155, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
-[sub_resource type="PrismMesh" id="PrismMesh_hxk0e"]
-left_to_right = 1.11022e-16
-size = Vector3(10, 9, 10)
-
-[sub_resource type="PrismMesh" id="PrismMesh_d7s48"]
-left_to_right = 1.11022e-16
-size = Vector3(10, 11, 10)
-
-[sub_resource type="PrismMesh" id="PrismMesh_dsymr"]
-left_to_right = 1.11022e-16
-size = Vector3(10, 13, 10)
-
-[sub_resource type="PrismMesh" id="PrismMesh_gksmn"]
-left_to_right = 1.11022e-16
-size = Vector3(10, 15, 10)
-
-[sub_resource type="PrismMesh" id="PrismMesh_d8eha"]
-left_to_right = 1.11022e-16
-size = Vector3(10, 17, 10)
-
-[sub_resource type="PrismMesh" id="PrismMesh_akxo7"]
-left_to_right = 1.11022e-16
-size = Vector3(10, 19, 10)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_gcbkq"]
-size = Vector3(10, 10, 15)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ileok"]
-size = Vector3(36.3656, 3.13172, 3.98146)
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8w4mx"]
+_data = {
+"new_ability": SubResource("Animation_oi0ve")
+}
 
 [node name="level" type="Node3D"]
 
 [node name="sky" parent="." instance=ExtResource("1_q8ltg")]
 editor_description = "https://github.com/Lexpartizan/Godot_4_sky_shader?tab=MIT-1-ov-file"
-wind_strength = 0.04
+time_of_day_setup = 0.5
 
 [node name="camera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_p1qa6")]
-transform = Transform3D(1, -4.68079e-16, 3.27752e-16, 3.27752e-16, 0.939693, 0.34202, -4.68079e-16, -0.34202, 0.939693, 2.08165e-12, 4.18515, 43.7313)
+transform = Transform3D(1, -5.97559e-16, -2.44468e-16, -2.44468e-16, -0.700909, 0.713251, -5.97559e-16, -0.713251, -0.700909, 2.08165e-12, 56, 2.08165e-12)
 target = NodePath("../player")
 
 [node name="player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_8vvr4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.18515, 36.7313)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 56, 2.08165e-12)
 camera = NodePath("../camera")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0836675, 0)
-light_color = Color(1, 1, 0.792157, 1)
-shadow_enabled = true
-omni_attenuation = 0.500001
+[node name="ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -80)
+mesh = SubResource("PlaneMesh_epywe")
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
-use_collision = true
+[node name="StaticBody3D" type="StaticBody3D" parent="ground"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.95461, 0)
-size = Vector3(1000, 4.90921, 1000)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_lkgcg")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 5.5, 29)
-size = Vector3(10, 12, 10)
+[node name="building" parent="." instance=ExtResource("11_dwc4c")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -3.53123, 0)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 5.5, 29)
-size = Vector3(10, 12, 10)
+[node name="building2" parent="." instance=ExtResource("11_dwc4c")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 2.08165e-12, -3.53123, -25)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 5.5, 45)
-size = Vector3(10, 12, 10)
+[node name="building3" parent="." instance=ExtResource("11_dwc4c")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 6.17938, 0, -46.8289)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 7, 29)
-size = Vector3(10, 9, 10)
+[node name="building4" parent="." instance=ExtResource("11_dwc4c")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 29.2803, -8.07711, -65.9833)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 19.6284, 29)
-size = Vector3(10, 40.2567, 10)
+[node name="building5" parent="." instance=ExtResource("11_dwc4c")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 3.80771, -21.592, -86.8697)
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 6.5, 29)
-size = Vector3(10, 10, 10)
+[node name="building6" parent="." instance=ExtResource("11_dwc4c")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -23.1096, -16.6198, -81.964)
 
-[node name="CSGBox3D9" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 7, 29)
-operation = 2
-size = Vector3(2, 3, 10)
+[node name="building7" parent="." instance=ExtResource("11_dwc4c")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -46.7574, -11.5599, -73.3956)
 
-[node name="CSGBox3D10" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5, 6.5, 28)
-operation = 2
-size = Vector3(37, 2, 4)
+[node name="building8" parent="." instance=ExtResource("11_dwc4c")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -57.4255, -7.11246, -98.3139)
 
-[node name="CSGBox3D11" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 8.5, 28)
-operation = 2
-size = Vector3(4, 6, 4)
+[node name="building9" parent="." instance=ExtResource("11_dwc4c")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -32.8799, -5.13374, -118.29)
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, -3.48787e-16, -1, 3.48787e-16, 1, -3.48787e-16, 1, -3.48787e-16, -4.37114e-08, -45, 1, -45)
-mesh = SubResource("PrismMesh_opcoe")
+[node name="building10" parent="." instance=ExtResource("11_dwc4c")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -6.91077, -1.30796, -111.502)
 
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, -3.48787e-16, -1, 3.48787e-16, 1, -3.48787e-16, 1, -3.48787e-16, -4.37114e-08, -35, 2, -45)
-mesh = SubResource("PrismMesh_sl7hu")
+[node name="building11" parent="." instance=ExtResource("11_dwc4c")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 17.2877, -9.16747, -126.848)
 
-[node name="CSGMesh3D3" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, -3.48787e-16, -1, 3.48787e-16, 1, -3.48787e-16, 1, -3.48787e-16, -4.37114e-08, -25, 3, -45)
-mesh = SubResource("PrismMesh_0d5ws")
+[node name="building12" parent="." instance=ExtResource("11_dwc4c")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 12.271, -5.13373, -149.571)
 
-[node name="CSGMesh3D4" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, -3.48787e-16, -1, 3.48787e-16, 1, -3.48787e-16, 1, -3.48787e-16, -4.37114e-08, -15, 4, -45)
-mesh = SubResource("PrismMesh_rimee")
+[node name="ui" type="CanvasLayer" parent="."]
 
-[node name="CSGMesh3D5" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, -3.48787e-16, -1, 3.48787e-16, 1, -3.48787e-16, 1, -3.48787e-16, -4.37114e-08, -5, 5, -45)
-mesh = SubResource("PrismMesh_hxk0e")
+[node name="minimap" type="SubViewportContainer" parent="ui"]
+material = SubResource("ShaderMaterial_bd7vg")
+custom_minimum_size = Vector2(512, 512)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -524.8
+offset_top = 12.8
+offset_right = -12.8
+offset_bottom = 524.8
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(512, 2.08165e-12)
+script = ExtResource("7_m8g1n")
 
-[node name="CSGMesh3D6" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, -3.48787e-16, -1, 3.48787e-16, 1, -3.48787e-16, 1, -3.48787e-16, -4.37114e-08, 5, 6, -45)
-mesh = SubResource("PrismMesh_d7s48")
+[node name="SubViewport" type="SubViewport" parent="ui/minimap"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
 
-[node name="CSGMesh3D7" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, -3.48787e-16, -1, 3.48787e-16, 1, -3.48787e-16, 1, -3.48787e-16, -4.37114e-08, 15, 7, -45)
-mesh = SubResource("PrismMesh_dsymr")
+[node name="Camera3D" type="Camera3D" parent="ui/minimap/SubViewport"]
+transform = Transform3D(1, -6.97574e-16, -1.5246e-23, -1.5246e-23, -4.37114e-08, 1, -6.97574e-16, -1, -4.37114e-08, 2.08165e-12, 2000, -80)
+fov = 5.5
+far = 2000.0
 
-[node name="CSGMesh3D8" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, -3.48787e-16, -1, 3.48787e-16, 1, -3.48787e-16, 1, -3.48787e-16, -4.37114e-08, 25, 8, -45)
-mesh = SubResource("PrismMesh_gksmn")
+[node name="clock" type="TextureProgressBar" parent="ui"]
+z_index = -1
+custom_minimum_size = Vector2(128, 128)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 128.0
+grow_horizontal = 0
+scale = Vector2(2.2, 2.2)
+pivot_offset = Vector2(128, 2.08165e-12)
+rounded = true
+fill_mode = 4
+texture_progress = ExtResource("9_bkphk")
+script = ExtResource("10_03rft")
 
-[node name="CSGMesh3D9" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, -3.48787e-16, -1, 3.48787e-16, 1, -3.48787e-16, 1, -3.48787e-16, -4.37114e-08, 35, 9, -45)
-mesh = SubResource("PrismMesh_d8eha")
+[node name="unlock_ability" type="Label" parent="ui"]
+unique_name_in_owner = true
+visible = false
+offset_left = 1155.0
+offset_top = 3.0
+offset_right = 1685.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 50
+text = "Unlocked New Ability:"
+script = ExtResource("11_4vq73")
 
-[node name="CSGMesh3D10" type="CSGMesh3D" parent="CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, -3.48787e-16, -1, 3.48787e-16, 1, -3.48787e-16, 1, -3.48787e-16, -4.37114e-08, 45, 10, -45)
-mesh = SubResource("PrismMesh_akxo7")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ui/unlock_ability"]
+libraries = {
+"": SubResource("AnimationLibrary_8w4mx")
+}
 
-[node name="Base Build" parent="." instance=ExtResource("3_iqad4")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -23, 4, -11)
+[node name="pause_screen" parent="ui" instance=ExtResource("9_xn65n")]
 
-[node name="Base" parent="." instance=ExtResource("4_yivut")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, -7)
+[node name="unlock" parent="." instance=ExtResource("11_isey8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4684, 51.5278, -148.859)
+ability = "climb"
 
-[node name="First2" parent="." instance=ExtResource("5_t4od8")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2.14112, 0.5, -6.78464)
-
-[node name="Tower" parent="." instance=ExtResource("6_l5nu0")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 29.9097, 0.499992, -15.6274)
-
-[node name="Building_" parent="." instance=ExtResource("7_muuga")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -38.2411, 0.5, 25.3429)
-
-[node name="camera_lock" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41, 25, -12)
-script = ExtResource("8_tjon2")
-pos = Vector3(41, 30, -1)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="camera_lock"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.54846, 5.29991)
-shape = SubResource("BoxShape3D_gcbkq")
-
-[node name="camera_lock2" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9733, 4.86876, 30.9467)
-script = ExtResource("8_tjon2")
-pos = Vector3(50, 6, 28)
-angle_rad = Vector3(2.08165e-12, 3.142, 2.08165e-12)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="camera_lock2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8154, 1.09089, -2.92549)
-shape = SubResource("BoxShape3D_ileok")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, 3.48787e-16, 1, 3.48787e-16, 1, -3.48787e-16, -1, 3.48787e-16, -4.37114e-08, 50, 6, 28)
-
-[node name="pause_screen" parent="." instance=ExtResource("9_xn65n")]
-
-[node name="Cube2" parent="." instance=ExtResource("11_dwc4c")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -52.2008, 10.5832, 0.940858)
-
-[node name="new building" parent="." instance=ExtResource("12_7up6h")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -121.113, 0.5, -9.58445)
-
-[node name="new building2" parent="." instance=ExtResource("12_7up6h")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -87.1384, 0.5, -9.58445)
-
-[node name="new building3" parent="." instance=ExtResource("12_7up6h")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -102.617, 0.5, 22.4519)
-
-[connection signal="body_entered" from="camera_lock" to="camera_lock" method="_on_body_entered"]
-[connection signal="body_exited" from="camera_lock" to="camera_lock" method="_on_body_exited"]
-[connection signal="body_entered" from="camera_lock2" to="camera_lock2" method="_on_body_entered"]
-[connection signal="body_exited" from="camera_lock2" to="camera_lock2" method="_on_body_exited"]
+[node name="unlock2" parent="." instance=ExtResource("11_isey8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.75748, 53.0099, -5.59888)
+ability = "crawl"
