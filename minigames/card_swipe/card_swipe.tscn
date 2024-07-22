@@ -1,18 +1,18 @@
 [gd_scene load_steps=8 format=3 uid="uid://cv1gm3f7hq4b4"]
 
 [ext_resource type="Script" path="res://minigames/card_swipe/card_swipe.gd" id="1_7oefq"]
-[ext_resource type="Texture2D" uid="uid://p48q15rnvuqo" path="res://minigames/find_the_ball/assets/me when i ate too many mr breast feastables (they were made using the waters of hiroshima).png" id="2_4ep26"]
-[ext_resource type="Texture2D" uid="uid://duvy7tpaywnmn" path="res://minigames/find_the_ball/assets/tablet.png" id="3_tag0m"]
+[ext_resource type="Texture2D" uid="uid://3ddbltlsclsj" path="res://minigames/card_swipe/assets/card.png" id="2_78ahd"]
+[ext_resource type="Texture2D" uid="uid://yi7dyx7q6sdn" path="res://minigames/card_swipe/assets/card swiper.png" id="3_8f2qd"]
 [ext_resource type="Texture2D" uid="uid://bsl38iifwba3h" path="res://3d/player/sprites/shadow.png" id="4_ejfx7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ed0do"]
-size = Vector2(47, 84)
+size = Vector2(135, 69)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ffgra"]
-size = Vector2(224, 80)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ajcw"]
+size = Vector2(404, 216)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_viryk"]
-size = Vector2(40, 80)
+size = Vector2(40, 216)
 
 [node name="card_swipe" type="Node2D"]
 script = ExtResource("1_7oefq")
@@ -30,37 +30,42 @@ theme_override_font_sizes/font_size = 200
 text = "2"
 
 [node name="card" type="Area2D" parent="."]
-position = Vector2(320, 366)
+position = Vector2(374, 154)
 scale = Vector2(2, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="card"]
-texture = ExtResource("2_4ep26")
+position = Vector2(0.0259705, 0)
+scale = Vector2(0.122837, 0.122837)
+texture = ExtResource("2_78ahd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="card"]
-position = Vector2(-0.5, 1)
+position = Vector2(-0.47403, 0.5)
 shape = SubResource("RectangleShape2D_ed0do")
 
 [node name="card_swiper" type="Area2D" parent="."]
-position = Vector2(308, 185)
+position = Vector2(200, 401)
 
 [node name="Sprite2D" type="Sprite2D" parent="card_swiper"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_tag0m")
+position = Vector2(2.22025, 0)
+scale = Vector2(0.226263, 0.226263)
+texture = ExtResource("3_8f2qd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="card_swiper"]
-shape = SubResource("RectangleShape2D_ffgra")
+position = Vector2(1.22025, 2)
+shape = SubResource("RectangleShape2D_7ajcw")
 
 [node name="card_enter" type="Area2D" parent="card_swiper"]
-position = Vector2(-92, -20)
+position = Vector2(-16.7798, -215)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="card_swiper/card_enter"]
-position = Vector2(0, 20)
+position = Vector2(-165, 218)
 shape = SubResource("RectangleShape2D_viryk")
 
 [node name="card_exit" type="Area2D" parent="card_swiper"]
+position = Vector2(75.2202, -195)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="card_swiper/card_exit"]
-position = Vector2(92, 0)
+position = Vector2(108, 196)
 shape = SubResource("RectangleShape2D_viryk")
 
 [node name="Timer" type="Timer" parent="."]

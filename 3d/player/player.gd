@@ -95,6 +95,11 @@ func play_animation(animation: String) -> void:
 func change_camera(camera_pos: String) -> void:
 	camera.change_state(camera_pos)
 
+#called when the player dies - either falls from a height or something else
+func death() -> void:
+	await is_on_floor() == true
+	get_tree().reload_current_scene()
+
 #debug
 func _on_check_button_pressed() -> void:
 	$CanvasLayer/VBoxContainer.visible = !$CanvasLayer/VBoxContainer.visible

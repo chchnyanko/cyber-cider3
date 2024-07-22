@@ -18,13 +18,13 @@ void fragment(){
 	if(in_circle){
 		COLOR = texture(TEXTURE, UV);
 		if(COLOR.a == 0.0) {
-			COLOR = vec4(1.0, 1.0, 1.0, 1.0);
+			COLOR = background_colour;
 		}
 	}
 	else{
 		COLOR.a = 0.0;
 	}
-	if(length(UV - player_pos) < 0.05) {
-		COLOR = vec4(0.5, 0.5, 0.5, 1.0);
+	if(length(UV - player_pos) < 0.01) {
+		COLOR = vec4(0.8, 0.8, 0.8, 1.0);
 	}
 }

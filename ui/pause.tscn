@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cj25o88urgm2f"]
+[gd_scene load_steps=10 format=3 uid="uid://cj25o88urgm2f"]
 
 [ext_resource type="Theme" uid="uid://cbeib5ysf2qfu" path="res://ui/labels_and_buttons.tres" id="1_fw5yp"]
 [ext_resource type="Script" path="res://ui/pause.gd" id="1_s1npe"]
-[ext_resource type="Texture2D" uid="uid://bge4hcekirmks" path="res://icon.svg" id="2_4vrgl"]
 [ext_resource type="Script" path="res://ui/ui_cursor.gd" id="2_ih1r4"]
+[ext_resource type="Texture2D" uid="uid://bm5psl7rukwev" path="res://ui/cursor_bottle.png" id="3_mgl3a"]
+[ext_resource type="Texture2D" uid="uid://catg26up7or6v" path="res://ui/cursor_liquid.png" id="4_ti61k"]
 
 [sub_resource type="Curve" id="Curve_x17cb"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -200,36 +201,18 @@ theme = ExtResource("1_fw5yp")
 text = "Back to Title Screen"
 flat = true
 
-[node name="test" type="Button" parent="pause"]
-editor_description = "level/player-hide-"
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 750.0
-offset_top = 457.0
-offset_right = 1050.0
-offset_bottom = 526.0
-grow_horizontal = 0
-grow_vertical = 2
-focus_neighbor_left = NodePath("../options")
-focus_neighbor_top = NodePath("../options")
-focus_neighbor_right = NodePath("../unpause")
-focus_neighbor_bottom = NodePath("../unpause")
-focus_next = NodePath("../unpause")
-focus_previous = NodePath("../options")
-theme = ExtResource("1_fw5yp")
-text = "Hide player (only use this in the 3d scene)"
-flat = true
-
-[node name="cursor" type="Sprite2D" parent="pause"]
-visible = false
-position = Vector2(714, 145)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_4vrgl")
+[node name="cursor" type="TextureProgressBar" parent="pause"]
+offset_left = -98.0
+offset_top = 339.0
+offset_right = -66.0
+offset_bottom = 371.0
+scale = Vector2(3, 3)
+pivot_offset = Vector2(16, 16)
+max_value = 30.0
+value = 30.0
+fill_mode = 3
+texture_over = ExtResource("3_mgl3a")
+texture_progress = ExtResource("4_ti61k")
 
 [node name="line" type="Line2D" parent="pause"]
 points = PackedVector2Array(0, 0, 2.08165e-12, 2.08165e-12)
@@ -250,4 +233,3 @@ libraries = {
 [connection signal="mouse_entered" from="pause/unpause" to="pause" method="_on_unpause_mouse_entered"]
 [connection signal="mouse_entered" from="pause/options" to="pause" method="_on_options_mouse_entered"]
 [connection signal="mouse_entered" from="pause/title_screen" to="pause" method="_on_title_screen_mouse_entered"]
-[connection signal="mouse_entered" from="pause/test" to="pause" method="_on_title_screen_mouse_entered"]

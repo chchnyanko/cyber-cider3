@@ -1,9 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://duthxxslyuch3"]
+[gd_scene load_steps=11 format=3 uid="uid://duthxxslyuch3"]
 
 [ext_resource type="Script" path="res://ui/title.gd" id="1_c8x6v"]
 [ext_resource type="Theme" uid="uid://cbeib5ysf2qfu" path="res://ui/labels_and_buttons.tres" id="2_3o7kn"]
 [ext_resource type="Shader" path="res://noise.gdshader" id="2_kpwru"]
-[ext_resource type="Texture2D" uid="uid://bge4hcekirmks" path="res://icon.svg" id="3_0fqj2"]
 [ext_resource type="Script" path="res://ui/ui_cursor.gd" id="4_cw0dn"]
 [ext_resource type="Texture2D" uid="uid://bm5psl7rukwev" path="res://ui/cursor_bottle.png" id="4_i1eg8"]
 [ext_resource type="Texture2D" uid="uid://catg26up7or6v" path="res://ui/cursor_liquid.png" id="5_rmo1j"]
@@ -103,7 +102,7 @@ focus_neighbor_bottom = NodePath("../Settings")
 focus_next = NodePath("../Settings")
 focus_previous = NodePath("../3d_level")
 theme = ExtResource("2_3o7kn")
-text = "Play Minigames"
+text = "Don't Play Minigames"
 flat = true
 
 [node name="Settings" type="Button" parent="."]
@@ -238,14 +237,9 @@ width = 2.0
 
 [node name="ui_cursor" type="Node" parent="." node_paths=PackedStringArray("cursor", "line", "first_focus")]
 script = ExtResource("4_cw0dn")
-cursor = NodePath("../Sprite2D")
+cursor = NodePath("../cursor")
 line = NodePath("../line")
 first_focus = NodePath("../3d_level")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-60, 165)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("3_0fqj2")
 
 [node name="LinkButton" type="LinkButton" parent="."]
 layout_mode = 1

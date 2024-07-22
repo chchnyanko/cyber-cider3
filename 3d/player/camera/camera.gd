@@ -2,7 +2,7 @@ extends Node3D
 
 #preset [position, angle] for each of the camera states
 const position_presets : Dictionary = {
-	"back" : [Vector3(0, 5, 4), Vector3(-PI/2, 0, 0)],
+	"back" : [Vector3(0, 7, 6), Vector3(-PI/2, 0, 0)],
 	"side" : [Vector3(10, 0, 0), Vector3(0, PI, 0)]
 }
 

@@ -189,6 +189,9 @@ physics_object_picking = true
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, 1.15)
 
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.954298)
+
 [node name="pause_screen" parent="." instance=ExtResource("8_4w267")]
 
 [node name="input_forwarder" type="Area3D" parent="."]

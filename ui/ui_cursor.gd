@@ -2,7 +2,7 @@ extends Node
 
 class_name ui_cursor
 
-@export var cursor : Sprite2D ## The cursor node
+@export var cursor : TextureProgressBar ## The cursor node
 @export var line : Line2D ## The line2d that follows the cursor
 @export var first_focus : Button ## The first button that will be focussed when a key is pressed
 @export var pause_screen : Node ## The pause screen for when pausing the game from a button
@@ -68,12 +68,12 @@ func button_pressed(button):
 	var target = command.replace(command.get_slice("-",1),"").replace("-", "") #the target of the action
 	
 	#pouring cider animation
-	#for i in 10:
-		#await get_tree().process_frame
-		#cursor.rotation_degrees += 10
-	#for i in 30:
-		#await get_tree().process_frame
-		#cursor.value -= 1
+	for i in 10:
+		await get_tree().process_frame
+		cursor.rotation_degrees += 10
+	for i in 30:
+		await get_tree().process_frame
+		cursor.value -= 1
 	
 	#if the action type is scene, change the scene to the target scene
 	if action_type == "scene":
@@ -91,6 +91,9 @@ func button_pressed(button):
 	#if the action type is load, load everything that the player unlocked in a previous save
 	elif action_type == "load":
 		load_data()
+	
+	cursor.value = 30
+	cursor.rotation = 0
 
 #called when saving the game
 func save() -> void:

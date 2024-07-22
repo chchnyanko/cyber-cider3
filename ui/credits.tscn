@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://fgfm1ssxwbvd"]
+[gd_scene load_steps=4 format=3 uid="uid://fgfm1ssxwbvd"]
 
-[ext_resource type="Texture2D" uid="uid://bge4hcekirmks" path="res://icon.svg" id="1_bok4j"]
+[ext_resource type="Texture2D" uid="uid://bm5psl7rukwev" path="res://ui/cursor_bottle.png" id="1_ql0jr"]
+[ext_resource type="Texture2D" uid="uid://catg26up7or6v" path="res://ui/cursor_liquid.png" id="2_6tjxp"]
 [ext_resource type="Script" path="res://ui/ui_cursor.gd" id="2_oja3s"]
 
 [node name="credits" type="Label"]
@@ -76,17 +77,25 @@ theme_override_font_sizes/font_size = 30
 text = "Back to title screen"
 flat = true
 
+[node name="cursor" type="TextureProgressBar" parent="."]
+offset_left = -162.0
+offset_top = 275.0
+offset_right = -130.0
+offset_bottom = 307.0
+scale = Vector2(3, 3)
+pivot_offset = Vector2(16, 16)
+max_value = 30.0
+value = 30.0
+fill_mode = 3
+texture_over = ExtResource("1_ql0jr")
+texture_progress = ExtResource("2_6tjxp")
+
 [node name="line" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 2.08165e-12, 2.08165e-12)
 width = 2.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-50, 528)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_bok4j")
-
 [node name="ui_cursor" type="Node" parent="." node_paths=PackedStringArray("cursor", "line", "first_focus")]
 script = ExtResource("2_oja3s")
-cursor = NodePath("../Sprite2D")
+cursor = NodePath("../cursor")
 line = NodePath("../line")
 first_focus = NodePath("../Button")

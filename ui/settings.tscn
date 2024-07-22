@@ -1,21 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwgogj5q6epel"]
+[gd_scene load_steps=6 format=3 uid="uid://cwgogj5q6epel"]
 
 [ext_resource type="Script" path="res://ui/settings.gd" id="1_51p41"]
 [ext_resource type="Theme" uid="uid://cbeib5ysf2qfu" path="res://ui/labels_and_buttons.tres" id="1_lu7we"]
-[ext_resource type="Texture2D" uid="uid://bge4hcekirmks" path="res://icon.svg" id="1_npwsv"]
 [ext_resource type="Script" path="res://ui/ui_cursor.gd" id="2_15pe7"]
+[ext_resource type="Texture2D" uid="uid://bm5psl7rukwev" path="res://ui/cursor_bottle.png" id="2_txu0m"]
+[ext_resource type="Texture2D" uid="uid://catg26up7or6v" path="res://ui/cursor_liquid.png" id="3_wsrue"]
 
 [node name="settings" type="Node2D"]
 script = ExtResource("1_51p41")
 
+[node name="cursor" type="TextureProgressBar" parent="."]
+offset_left = -98.0
+offset_top = 339.0
+offset_right = -66.0
+offset_bottom = 371.0
+scale = Vector2(3, 3)
+pivot_offset = Vector2(16, 16)
+max_value = 30.0
+value = 30.0
+fill_mode = 3
+texture_over = ExtResource("2_txu0m")
+texture_progress = ExtResource("3_wsrue")
+
 [node name="line" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 2.08165e-12, 2.08165e-12)
 width = 2.0
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-61, 246)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_npwsv")
 
 [node name="Back" type="Button" parent="."]
 editor_description = "ui/title-scene-"
@@ -68,7 +77,7 @@ flat = true
 
 [node name="ui_cursor" type="Node" parent="." node_paths=PackedStringArray("cursor", "line", "first_focus")]
 script = ExtResource("2_15pe7")
-cursor = NodePath("../Sprite2D")
+cursor = NodePath("../cursor")
 line = NodePath("../line")
 first_focus = NodePath("../setting1")
 
